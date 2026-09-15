@@ -198,7 +198,6 @@ def main():
     COL_ISOLATE_INFO = 13
     RV_TO_GENE = {
         "Rv0676c": "mmpL5",
-        "Rv1304": "atpB",
         "Rv1305": "atpE",
         "Rv0678": "Rv0678",
         "Rv1979c": "Rv1979c",

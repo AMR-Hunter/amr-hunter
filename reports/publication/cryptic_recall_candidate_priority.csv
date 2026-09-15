@@ -1,6 +1,5 @@
 candidate,candidate_type,priority_tier,fn_carriers,r_carriers,s_carriers,carrier_total,r_fraction_among_carriers,odds_ratio_haldane,fisher_one_sided_p,recommended_next_step
 Rv1979c:p.Asp249Glu,unsupported_variant,high_priority_candidate,3,3,1,4,0.7500,288.3,2.194e-06,literature_review_and_targeted_modeling_then_nested_validation
-atpB:p.Thr166Met,unsupported_variant,high_priority_candidate,2,3,10,13,0.2308,41.14,0.0001486,literature_review_and_targeted_modeling_then_nested_validation
 glpK:c.1102C>T,unsupported_variant,high_priority_candidate,2,3,10,13,0.2308,41.14,0.0001486,literature_review_and_targeted_modeling_then_nested_validation
 Rv1979c:p.Arg409Gln,unsupported_variant,medium_priority_candidate,8,15,149,164,0.0915,15.26,3.405e-12,inspect_carrier_isolates_and_add_only_as_nested_cv_feature
 context:mtrB_Met517Leu,gene_or_context_combination,recurrent_low_specificity_context,45,67,7822,7889,0.0085,1.232,0.3679,keep_as_context_or_indeterminate_signal_not_resistant_rule
@@ -13,9 +12,6 @@ context:mtrB_double_hit,gene_or_context_combination,recurrent_low_specificity_co
 gene_pair:Rv1979c+mtrB,gene_or_context_combination,recurrent_low_specificity_context,11,19,520,539,0.0353,5.669,4.646e-08,keep_as_context_or_indeterminate_signal_not_resistant_rule
 gene:Rv1979c,gene_or_context_combination,recurrent_low_specificity_context,11,19,656,675,0.0281,4.418,1.543e-06,keep_as_context_or_indeterminate_signal_not_resistant_rule
 gene_pair:Rv1979c+glpK,gene_or_context_combination,recurrent_low_specificity_context,3,3,79,82,0.0366,5.389,0.03061,keep_as_context_or_indeterminate_signal_not_resistant_rule
-gene_pair:atpB+glpK,gene_or_context_combination,recurrent_low_specificity_context,2,3,87,90,0.0333,4.892,0.03876,keep_as_context_or_indeterminate_signal_not_resistant_rule
-gene_pair:atpB+mtrB,gene_or_context_combination,recurrent_low_specificity_context,2,3,150,153,0.0196,2.823,0.1344,keep_as_context_or_indeterminate_signal_not_resistant_rule
-gene:atpB,gene_or_context_combination,recurrent_low_specificity_context,2,3,183,186,0.0161,2.306,0.2013,keep_as_context_or_indeterminate_signal_not_resistant_rule
 gene_pair:Rv0678+mtrB,gene_or_context_combination,recurrent_low_specificity_context,2,2,157,159,0.0126,1.897,0.3827,keep_as_context_or_indeterminate_signal_not_resistant_rule
 gene:Rv0678,gene_or_context_combination,recurrent_low_specificity_context,2,2,188,190,0.0105,1.579,0.4717,keep_as_context_or_indeterminate_signal_not_resistant_rule
 context:mtrB_Met517Leu_plus_core_gene,gene_or_context_combination,recurrent_low_specificity_context,2,2,227,229,0.0087,1.302,0.5722,keep_as_context_or_indeterminate_signal_not_resistant_rule

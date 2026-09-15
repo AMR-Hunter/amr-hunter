@@ -1,4 +1,4 @@
-﻿unique_id,bdq_mic,variants
+unique_id,bdq_mic,variants
 site.02.subj.0364.lab.231002-14.iso.1,>2,mmpL5:p.Ile948Val; mtrB:p.Met517Leu
 site.03.subj.GB-85160118.lab.IML-02002.iso.1,>1,mmpL5:p.Asp767Asn; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu; mtrB:p.Pro18Ser
 site.04.subj.00433.lab.703904.iso.1,>2,mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu; mtrB:p.Pro18Ser
@@ -13,8 +13,8 @@ site.06.subj.06TB_1030.lab.06MIL2035.iso.1,1.0,mmpL5:p.Ile948Val; mtrB:p.Met517L
 site.06.subj.AF11681.lab.06MIL1559.iso.1,1.0,mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu; mtrB:p.Pro18Ser
 site.06.subj.D156716.lab.06MIL1347.iso.1,1.0,glpK:c.1134C>T; glpK:c.510C>T; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu
 site.08.subj.02TB1949.lab.22656.iso.1,1.0,mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu
-site.10.subj.BC01599194.lab.BC01599194.iso.1,1.0,atpB:p.Thr166Met; glpK:c.1102C>T; glpK:c.1134C>T; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu
+site.10.subj.BC01599194.lab.BC01599194.iso.1,1.0,glpK:c.1102C>T; glpK:c.1134C>T; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu
 site.10.subj.XD02481495.lab.XD02481495.iso.1,1.0,Rv0678:p.Ala99Pro; Rv1979c:p.Arg409Gln; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu
-site.10.subj.YA00127802.lab.YA00127802.iso.1,1.0,atpB:p.Thr166Met; glpK:c.1102C>T; glpK:c.1134C>T; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu
+site.10.subj.YA00127802.lab.YA00127802.iso.1,1.0,glpK:c.1102C>T; glpK:c.1134C>T; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu
 site.10.subj.YA00131246.lab.YA00131246.iso.1,1.0,mmpL5:p.Asp767Asn; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu; mtrB:p.Pro18Ser
 site.10.subj.YA00134729.lab.YA00134729.iso.1,1.0,Rv0678:p.Ser64fs; Rv1979c:p.Arg409Gln; mmpL5:p.Ile948Val; mmpL5:p.Thr794Ile; mtrB:p.Met517Leu

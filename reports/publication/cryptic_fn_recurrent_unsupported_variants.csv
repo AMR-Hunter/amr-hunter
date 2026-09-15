@@ -1,7 +1,6 @@
 variant,gene,mutation,carrier_total,r_carriers,s_carriers,fn_carriers,tp_carriers,r_fraction_among_carriers,r_recall_gap_fraction,odds_ratio_haldane,fisher_one_sided_p,is_common_background
 Rv1979c:p.Arg409Gln,Rv1979c,p.Arg409Gln,164,15,149,8,7,0.0915,0.1127,15.26,3.405e-12,false
 Rv1979c:p.Asp249Glu,Rv1979c,p.Asp249Glu,4,3,1,3,0,0.7500,0.0423,288.3,2.194e-06,false
-atpB:p.Thr166Met,atpB,p.Thr166Met,13,3,10,2,1,0.2308,0.0282,41.14,0.0001486,false
 glpK:c.1102C>T,glpK,c.1102C>T,13,3,10,2,1,0.2308,0.0282,41.14,0.0001486,false
 mtrB:p.Met517Leu,mtrB,p.Met517Leu,7889,67,7822,45,22,0.0085,0.6338,1.232,0.3679,true
 glpK:c.1134C>T,glpK,c.1134C>T,626,18,608,12,6,0.0288,0.1690,4.465,2.307e-06,true

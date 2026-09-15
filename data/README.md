@@ -15,7 +15,7 @@ listed below and downloads anything missing.
 | Path | Asset | Source |
 |---|---|---|
 | `reference/mtb_h37rv.gbk` | *M. tuberculosis* H37Rv reference genome, NC_000962.3 | NCBI Entrez |
-| `structures/atpE_wt.pdb`, `atpB`-free panel | wild-type target structures | RCSB PDB 7D00 (atpE), 4NB5 (Rv0678, mmpS5, mmpL5, Rv1979c, pepQ, glpK, lpqB), 2GWR (mtrA, mtrB) |
+| `structures/*.pdb` | wild-type structures for the ten target genes | RCSB PDB 7D00 (atpE), 4NB5 (Rv0678, mmpS5, mmpL5, Rv1979c, pepQ, glpK, lpqB), 2GWR (mtrA, mtrB) |
 | `ligands/bedaquiline.sdf` | bedaquiline ligand | PubChem |
 
 The reference genome supplies CDS coordinates (gene / locus_tag, start, end, strand) used to

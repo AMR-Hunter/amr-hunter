@@ -32,7 +32,7 @@ which loss of function (LoF) shifts BDQ susceptibility:
 | Exploratory (EXPLORATORY) | `Rv1979c`, `glpK` | recorded, no definitive call |
 
 The complete rule set, including the Rv0678 de-repression / efflux-collapse re-sensitization
-rule, is defined in `config/config.yaml` and summarised in `ANALYSIS_RULE_MATRIX.md`.
+rule, is defined in `config/config.yaml`.
 
 ## Repository layout
 

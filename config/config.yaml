@@ -204,10 +204,12 @@ noncoding:
       trim_left_bp: 0
       trim_right_bp: 0
 
-    - name: ATPE_ATPB_INTERGENIC
+    - name: ATPE_UPSTREAM_INTERGENIC
       species: Mycobacterium tuberculosis
       anchor_gene: atpE
-      partner_gene: atpB
+      # 侧翼 CDS 仅用于确定该区间边界，不在目标基因面板内，也不承载任何判读规则；
+      # 为保持配置与面板解耦，这里以 locus tag 引用（可用 partner_gene 兼容旧写法）。
+      partner_locus: Rv1304
       trim_left_bp: 0
       trim_right_bp: 0
 

@@ -15,6 +15,19 @@ from core.consequence import (
 )
 from core.database import DatabaseManager
 
+TARGET_GENES = {
+    "atpE",
+    "Rv0678",
+    "mmpS5",
+    "mmpL5",
+    "pepQ",
+    "lpqB",
+    "mtrA",
+    "mtrB",
+    "Rv1979c",
+    "glpK",
+}
+
 
 @dataclass(frozen=True)
 class AnalysisDecision:
@@ -264,8 +277,8 @@ def resolve_analysis_decision(mutation: Mapping[str, Any]) -> AnalysisDecision:
             return AnalysisDecision(
                 "SENSITIVE", "INTACT", "STRUCTURAL_FUNCTION_RETAINED"
             )
-        if gene_name == "atpB":
-            return AnalysisDecision("UNKNOWN", "INTACT", "ATPB_AUXILIARY_ONLY")
+        if gene_name not in TARGET_GENES:
+            return AnalysisDecision("UNKNOWN", "INTACT", "NON_TARGET_GENE")
         if (
             gene_name == "atpE"
             and (not has_loss_of_function_signature(dict(mutation)))
@@ -743,9 +756,9 @@ class PathwayAnalyzer:
                 "SENSITIVE: no structural collapse evidence after Evo/Boltz review"
             )
             return
-        if gene_name == "atpB":
+        if gene_name not in TARGET_GENES:
             mutation["final_interpretation"] = (
-                "REVIEWED: atpB evidence is retained as auxiliary ATP synthase context only; no direct resistance rule is calibrated"
+                "REVIEWED: gene lies outside the target panel; evidence retained without a calibrated resistance rule"
             )
             return
         mutation["final_interpretation"] = (

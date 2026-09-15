@@ -4,7 +4,6 @@ glpK:c.1134C>T,glpK,c.1134C>T,626,18,608,12,6,0.0288,0.1690,4.465,2.307e-06,true
 mtrB:p.Pro18Ser,mtrB,p.Pro18Ser,2896,17,2879,12,5,0.0059,0.1690,0.6229,0.9748,true
 Rv1979c:p.Arg409Gln,Rv1979c,p.Arg409Gln,164,15,149,8,7,0.0915,0.1127,15.26,3.405e-12,false
 Rv1979c:p.Asp249Glu,Rv1979c,p.Asp249Glu,4,3,1,3,0,0.7500,0.0423,288.3,2.194e-06,false
-atpB:p.Thr166Met,atpB,p.Thr166Met,13,3,10,2,1,0.2308,0.0282,41.14,0.0001486,false
 glpK:c.1102C>T,glpK,c.1102C>T,13,3,10,2,1,0.2308,0.0282,41.14,0.0001486,false
 glpK:c.510C>T,glpK,c.510C>T,78,5,73,1,4,0.0641,0.0141,9.443,0.0004554,true
 Rv0678:p.Ser64fs,Rv0678,p.Ser64fs,36,1,35,1,0,0.0278,0.0141,5.052,0.2602,false
@@ -40,11 +39,6 @@ Rv1979c:p.Thr187fs,Rv1979c,p.Thr187fs,2,0,2,0,0,0.0000,0.0000,23.67,1,false
 Rv1979c:p.Thr83Ala,Rv1979c,p.Thr83Ala,2,0,2,0,0,0.0000,0.0000,23.67,1,false
 Rv1979c:p.Val2Ala,Rv1979c,p.Val2Ala,2,0,2,0,0,0.0000,0.0000,23.67,1,false
 Rv1979c:p.Val423Ala,Rv1979c,p.Val423Ala,2,0,2,0,0,0.0000,0.0000,23.67,1,false
-atpB:c.-31A>G,atpB,c.-31A>G,2,0,2,0,0,0.0000,0.0000,23.67,1,false
-atpB:c.-96C>T,atpB,c.-96C>T,2,0,2,0,0,0.0000,0.0000,23.67,1,false
-atpB:c.144C>A,atpB,c.144C>A,2,0,2,0,0,0.0000,0.0000,23.67,1,false
-atpB:p.Ala8Asp,atpB,p.Ala8Asp,2,0,2,0,0,0.0000,0.0000,23.67,1,false
-atpB:p.Val56Ala,atpB,p.Val56Ala,2,0,2,0,0,0.0000,0.0000,23.67,1,false
 glpK:c.-92C>G,glpK,c.-92C>G,2,0,2,0,0,0.0000,0.0000,23.67,1,false
 glpK:c.117G>C,glpK,c.117G>C,2,0,2,0,0,0.0000,0.0000,23.67,1,false
 glpK:c.1317G>A,glpK,c.1317G>A,2,0,2,0,0,0.0000,0.0000,23.67,1,false
@@ -107,12 +101,6 @@ Rv1979c:p.Arg88His,Rv1979c,p.Arg88His,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 Rv1979c:p.Ser262Leu,Rv1979c,p.Ser262Leu,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 Rv1979c:p.Tyr434Cys,Rv1979c,p.Tyr434Cys,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 Rv1979c:p.Val273Ala,Rv1979c,p.Val273Ala,3,0,3,0,0,0.0000,0.0000,16.91,1,false
-atpB:c.-40A>G,atpB,c.-40A>G,3,0,3,0,0,0.0000,0.0000,16.91,1,false
-atpB:c.327G>A,atpB,c.327G>A,3,0,3,0,0,0.0000,0.0000,16.91,1,false
-atpB:c.357C>G,atpB,c.357C>G,3,0,3,0,0,0.0000,0.0000,16.91,1,false
-atpB:c.429C>T,atpB,c.429C>T,3,0,3,0,0,0.0000,0.0000,16.91,1,false
-atpB:c.519T>C,atpB,c.519T>C,3,0,3,0,0,0.0000,0.0000,16.91,1,false
-atpB:p.Trp216Leu,atpB,p.Trp216Leu,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 glpK:c.1341G>T,glpK,c.1341G>T,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 glpK:c.246G>A,glpK,c.246G>A,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 glpK:c.309C>T,glpK,c.309C>T,3,0,3,0,0,0.0000,0.0000,16.91,1,false
@@ -141,8 +129,6 @@ pepQ:p.Ala187Glu,pepQ,p.Ala187Glu,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 pepQ:p.Ala242Thr,pepQ,p.Ala242Thr,3,0,3,0,0,0.0000,0.0000,16.91,1,false
 Rv1979c:c.-69G>C,Rv1979c,c.-69G>C,4,0,4,0,0,0.0000,0.0000,13.15,1,false
 Rv1979c:p.Leu174Phe,Rv1979c,p.Leu174Phe,4,0,4,0,0,0.0000,0.0000,13.15,1,false
-atpB:c.112T>C,atpB,c.112T>C,4,0,4,0,0,0.0000,0.0000,13.15,1,false
-atpB:p.Gly58Cys,atpB,p.Gly58Cys,4,0,4,0,0,0.0000,0.0000,13.15,1,false
 glpK:p.Ala11Val,glpK,p.Ala11Val,4,0,4,0,0,0.0000,0.0000,13.15,1,false
 glpK:p.His103Tyr,glpK,p.His103Tyr,4,0,4,0,0,0.0000,0.0000,13.15,1,false
 mmpL5:p.Ser71Pro,mmpL5,p.Ser71Pro,4,0,4,0,0,0.0000,0.0000,13.15,1,false
@@ -161,10 +147,8 @@ mmpL5:p.Ile59Thr,mmpL5,p.Ile59Thr,5,0,5,0,0,0.0000,0.0000,10.76,1,false
 mmpS5:c.-36A>G,mmpS5,c.-36A>G,5,0,5,0,0,0.0000,0.0000,10.76,1,false
 Rv1979c:c.-70G>A,Rv1979c,c.-70G>A,6,0,6,0,0,0.0000,0.0000,9.1,1,false
 Rv1979c:p.Val351fs,Rv1979c,p.Val351fs,6,0,6,0,0,0.0000,0.0000,9.1,1,false
-atpB:p.Val87Met,atpB,p.Val87Met,6,0,6,0,0,0.0000,0.0000,9.1,1,false
 glpK:c.573T>GGGT,glpK,c.573T>GGGT,6,0,6,0,0,0.0000,0.0000,9.1,1,false
 mmpL5:p.Glu552Gly,mmpL5,p.Glu552Gly,6,0,6,0,0,0.0000,0.0000,9.1,1,false
-atpB:c.423C>T,atpB,c.423C>T,7,0,7,0,0,0.0000,0.0000,7.886,1,false
 glpK:c.624A>C,glpK,c.624A>C,7,0,7,0,0,0.0000,0.0000,7.886,1,false
 glpK:c.123C>A,glpK,c.123C>A,8,0,8,0,0,0.0000,0.0000,6.957,1,false
 Rv0678:p.Glu55Asp,Rv0678,p.Glu55Asp,9,0,9,0,0,0.0000,0.0000,6.224,1,false
@@ -181,10 +165,8 @@ Rv1979c:p.Arg7Ser,Rv1979c,p.Arg7Ser,16,0,16,0,0,0.0000,0.0000,3.581,1,false
 pepQ:p.Phe46Leu,pepQ,p.Phe46Leu,16,0,16,0,0,0.0000,0.0000,3.581,1,false
 glpK:p.Asp84Glu,glpK,p.Asp84Glu,18,0,18,0,0,0.0000,0.0000,3.193,1,false
 mmpL5:p.Val247Ala,mmpL5,p.Val247Ala,20,0,20,0,0,0.0000,0.0000,2.881,1,false
-atpB:p.Trp103Cys,atpB,p.Trp103Cys,22,0,22,0,0,0.0000,0.0000,2.624,1,false
 Rv1979c:p.Ile104Thr,Rv1979c,p.Ile104Thr,23,0,23,0,0,0.0000,0.0000,2.512,1,false
 Rv1979c:p.Thr270Ala,Rv1979c,p.Thr270Ala,23,0,23,0,0,0.0000,0.0000,2.512,1,false
-atpB:p.His250Pro,atpB,p.His250Pro,24,0,24,0,0,0.0000,0.0000,2.409,1,false
 atpE:c.-53A>C,atpE,c.-53A>C,24,0,24,0,0,0.0000,0.0000,2.409,1,false
 glpK:c.417G>A,glpK,c.417G>A,24,0,24,0,0,0.0000,0.0000,2.409,1,false
 mmpL5:p.Trp598Arg,mmpL5,p.Trp598Arg,25,0,25,0,0,0.0000,0.0000,2.314,1,false
@@ -192,7 +174,6 @@ Rv1979c:p.Ala222Thr,Rv1979c,p.Ala222Thr,34,0,34,0,0,0.0000,0.0000,1.709,1,false
 mtrB:p.Gly174Ala,mtrB,p.Gly174Ala,34,0,34,0,0,0.0000,0.0000,1.709,1,false
 mmpL5:p.Gly246Ser,mmpL5,p.Gly246Ser,36,0,36,0,0,0.0000,0.0000,1.615,1,false
 Rv1979c:c.1419G>CCGG,Rv1979c,c.1419G>CCGG,43,0,43,0,0,0.0000,0.0000,1.354,1,false
-atpB:p.Phe222Leu,atpB,p.Phe222Leu,43,0,43,0,0,0.0000,0.0000,1.354,1,false
 mmpL5:p.Phe696Leu,mmpL5,p.Phe696Leu,68,0,68,0,0,0.0000,0.0000,0.8572,1,false
 Rv1979c:p.Val426Ile,Rv1979c,p.Val426Ile,80,0,80,0,0,0.0000,0.0000,0.7284,1,false
 Rv1979c:c.-50A>C,Rv1979c,c.-50A>C,87,0,87,0,0,0.0000,0.0000,0.6695,1,false

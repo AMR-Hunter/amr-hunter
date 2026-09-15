@@ -6,12 +6,12 @@ manuscript numbers.
 
 | Asset | Size | Contents |
 |---|---|---|
-| `amr_hunter_db_final.db.gz` | ~370 MB uncompressed | **BDQ-SatDB**: whole-site saturation-mutagenesis database for the 10 target genes — per-variant Evo 2 scores, Boltz-2 confidence metrics, functional state, evidence code and final interpretation |
-| `cryptic_supervised_cv_predictions.csv` | 15.8 MB | Per-isolate, per-repeat cross-validation predictions of the supervised reference model |
-| `cryptic_candidate_nested_cv_predictions.csv` | 13.0 MB | Nested cross-validation predictions for the candidate-priority analysis |
-| `external_bdq_phenotype_validation_variant_calls.csv` | 8.3 MB | CRyPTIC per-isolate variant calls with AMR-Hunter interpretation |
-| `final_external_bdq_phenotype_validation_variant_calls.csv` | 8.2 MB | Same table after the final rule-layer pass |
-| `rule_layer_no_gate_variant_calls.csv` | 8.2 MB | Rule-layer-only ablation (no evolutionary gate) variant calls |
+| `amr_hunter_db_final.db.gz` | ~330 MB uncompressed | **BDQ-SatDB**: whole-site saturation-mutagenesis database for the 10 target genes — per-variant Evo 2 scores, Boltz-2 confidence metrics, functional state, evidence code and final interpretation |
+| `cryptic_supervised_cv_predictions.csv` | 16.5 MB | Per-isolate, per-repeat cross-validation predictions of the supervised reference model |
+| `cryptic_candidate_nested_cv_predictions.csv` | 12.3 MB | Nested cross-validation predictions for the candidate-priority analysis |
+| `external_bdq_phenotype_validation_variant_calls.csv` | 8.6 MB | CRyPTIC per-isolate variant calls with AMR-Hunter interpretation |
+| `final_external_bdq_phenotype_validation_variant_calls.csv` | 8.5 MB | Same table after the final rule-layer pass |
+| `rule_layer_no_gate_variant_calls.csv` | 8.5 MB | Rule-layer-only ablation (no evolutionary gate) variant calls |
 
 SQLite schema of BDQ-SatDB: `genes`, `mutations`, `drugs`, `species`, `boltz_cache`,
 `synergy_events`, `synergy_event_mutations`. Key columns of `mutations`:
@@ -30,5 +30,5 @@ practical route for re-analysis.
 
 ## Smaller tables
 
-All remaining result tables (72 files, ~24 MB) are version-controlled inside the repository
+All remaining result tables (70 files, ~23 MB) are version-controlled inside the repository
 under `reports/publication/`.

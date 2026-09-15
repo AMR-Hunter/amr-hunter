@@ -5,5 +5,5 @@ r_or_likely_r_recall,29,71,0.4085,Resistant isolates captured as R or Likely R.
 r_not_called_sensitive,31,71,0.4366,Resistant isolates not assigned hard/likely sensitive labels.
 s_not_called_resistant_or_likely,8426,8464,0.9955,Sensitive isolates not assigned R or Likely R.
 indeterminate_rate,440,8535,0.0516,Fraction of cohort assigned Indeterminate.
-hard_s_risk,3,393,0.0076,Phenotype-R fraction among hard S labels.
-likely_s_risk,37,7635,0.0048,Phenotype-R fraction among Likely S labels.
+hard_s_risk,3,403,0.0074,Phenotype-R fraction among hard S labels.
+likely_s_risk,37,7625,0.0049,Phenotype-R fraction among Likely S labels.

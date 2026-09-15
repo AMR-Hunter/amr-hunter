@@ -273,6 +273,7 @@ def _extract_window_sequence(
     feature_info: Dict[str, Any],
     window: Dict[str, Any],
     gene_features: Dict[str, Dict[str, Any]],
+    locus_features: Optional[Dict[str, Dict[str, Any]]] = None,
 ) -> str:
     mode = str(window.get("mode", "upstream")).lower()
     start = int(feature_info["start"])
@@ -311,7 +312,12 @@ def _extract_window_sequence(
         return _slice_oriented_sequence(record.seq, win_start, win_end, strand)
     if mode == "intergenic":
         partner_gene = window.get("partner_gene")
-        partner_info = gene_features.get(partner_gene) if partner_gene else None
+        partner_locus = window.get("partner_locus")
+        partner_info = None
+        if partner_gene:
+            partner_info = gene_features.get(partner_gene)
+        elif partner_locus and locus_features:
+            partner_info = locus_features.get(partner_locus)
         if not partner_info:
             return ""
         return _extract_intergenic_between(
@@ -336,16 +342,20 @@ def extract_target_gene_contexts(
     record = SeqIO.read(str(genome_path), "genbank")
     found: Dict[str, Dict[str, Any]] = {}
     gene_features: Dict[str, Dict[str, Any]] = {}
+    locus_features: Dict[str, Dict[str, Any]] = {}
     for feature in record.features:
         if feature.type != "CDS":
             continue
         gene_name = _get_feature_gene_name(feature)
-        if not gene_name or gene_name not in target_genes or gene_name in gene_features:
-            continue
+        locus_tag = str((feature.qualifiers.get("locus_tag") or [""])[0]).strip()
         location = feature.location
         strand = int(location.strand or 1)
         start = int(location.start)
         end = int(location.end)
+        if locus_tag and locus_tag not in locus_features:
+            locus_features[locus_tag] = {"start": start, "end": end, "strand": strand}
+        if not gene_name or gene_name not in target_genes or gene_name in gene_features:
+            continue
         seq = _slice_oriented_sequence(record.seq, start, end, strand)
         if not seq or len(seq) % 3 != 0:
             continue
@@ -375,7 +385,7 @@ def extract_target_gene_contexts(
             )
         for idx, window in enumerate(windows):
             region_seq = _extract_window_sequence(
-                record, feature_info, window, gene_features
+                record, feature_info, window, gene_features, locus_features
             )
             if not region_seq:
                 continue
@@ -387,18 +397,23 @@ def extract_target_gene_contexts(
     for region in intergenic_regions:
         anchor_gene = region.get("anchor_gene")
         partner_gene = region.get("partner_gene")
-        if not anchor_gene or not partner_gene:
+        partner_locus = region.get("partner_locus")
+        if not anchor_gene or not (partner_gene or partner_locus):
             continue
-        if (
-            anchor_gene not in found
-            or anchor_gene not in gene_features
-            or partner_gene not in gene_features
-        ):
+        if anchor_gene not in found or anchor_gene not in gene_features:
+            continue
+        if partner_gene:
+            partner_info = gene_features.get(partner_gene)
+            default_name = f"INTERGENIC_{anchor_gene}_{partner_gene}"
+        else:
+            partner_info = locus_features.get(str(partner_locus))
+            default_name = f"INTERGENIC_{anchor_gene}_{partner_locus}"
+        if not partner_info:
             continue
         intergenic_seq = _extract_intergenic_between(
             record.seq,
             anchor_info=gene_features[anchor_gene],
-            partner_info=gene_features[partner_gene],
+            partner_info=partner_info,
             trim_left_bp=int(region.get("trim_left_bp", 0) or 0),
             trim_right_bp=int(region.get("trim_right_bp", 0) or 0),
         )
@@ -406,9 +421,7 @@ def extract_target_gene_contexts(
             continue
         found[anchor_gene]["regulatory_regions"].append(
             {
-                "name": str(
-                    region.get("name") or f"INTERGENIC_{anchor_gene}_{partner_gene}"
-                ),
+                "name": str(region.get("name") or default_name),
                 "sequence": intergenic_seq,
             }
         )
