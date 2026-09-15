@@ -1,0 +1,10 @@
+gene,benchmark_role,configured_scenario,include_upstream,include_upstream_bp,noncoding_windows,snapshot_regulatory_rows,regulatory_resistant_rows,regulatory_sensitive_rows,regulatory_unknown_rows,regulatory_evidence_codes,paper_recommendation
+Rv0678,primary_bdq,PROTEIN_DNA,true,120,RV0678_OPERATOR_CORE,535,535,0,0,NEGATIVE_LOF_REVIEWED:535,"best curated regulatory/intergenic extensibility example; present as mechanism-supported candidate evidence, not broad regulatory validation"
+Rv1979c,primary_bdq,FOLDING_ONLY,,,RV1979C_PROMOTER_CORE,960,0,0,960,REGULATORY_SCENARIO_UNSUPPORTED:960,"use as limitation/evo-only regulatory scan, not as resistance claim"
+atpE,primary_bdq,PROTEIN_LIGAND,,,ATPE_PROMOTER_CORE,1074,0,0,1074,REGULATORY_SCENARIO_UNSUPPORTED:1074,"use as limitation/evo-only regulatory scan, not as resistance claim"
+glpK,exploratory_bdq,FOLDING_ONLY,,,,660,0,0,660,REGULATORY_SCENARIO_UNSUPPORTED:660,"use as limitation/evo-only regulatory scan, not as resistance claim"
+mmpL5,primary_bdq,COMPLEX,true,120,MMPL5_OPERATOR_PROXIMAL,1318,0,1318,0,EFFLUX_PUMP_COLLAPSE:1318,usable conservative noncoding example for sensitivity/control behavior
+mmpS5,primary_bdq,COMPLEX,true,120,MMPS5_OPERATOR_PROXIMAL,1320,0,1320,0,EFFLUX_PUMP_COLLAPSE:1320,usable conservative noncoding example for sensitivity/control behavior
+mtrA,primary_bdq,FOLDING_ONLY,,,MTRA_OPERATOR_CORE,1167,1167,0,0,MTRAB_DEREGULATION:1167,secondary regulatory/pathway example; not Rv0678 protein-DNA binding
+mtrB,primary_bdq,FOLDING_ONLY,,,MTRB_OPERATOR_CORE,1020,1020,0,0,MTRAB_DEREGULATION:1020,secondary regulatory/pathway example; not Rv0678 protein-DNA binding
+pepQ,primary_bdq,FOLDING_ONLY,,,,660,1,0,659,REGULATORY_SCENARIO_UNSUPPORTED:659;NEGATIVE_LOF_REVIEWED:1,"use as limitation/evo-only regulatory scan, not as resistance claim"

@@ -1,0 +1,2 @@
+dataset,filter_name,total_isolates,phenotype_r,phenotype_s,interpretable_isolates,unknown_isolates,coverage,accuracy,tp,tn,fp,fn,sensitivity,specificity,notes
+CRyPTIC,high_quality_with_vcf,8535,71,8464,8506,29,0.9966,0.9759,23,8278,157,48,0.3239,0.9814,Accuracy excludes UNKNOWN/no-call isolates; coverage includes all included isolates.

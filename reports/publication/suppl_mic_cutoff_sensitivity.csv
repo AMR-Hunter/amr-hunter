@@ -1,0 +1,4 @@
+﻿resistance_definition,n_resistant,n_susceptible,tp,fp,fn,tn,sensitivity_percent,specificity_percent,precision_percent,npv_percent
+>=0.5 (standard),71,8464,24,81,47,8383,33.8,99.04,22.9,99.44
+>=1.0,23,8512,4,101,19,8411,17.4,98.81,3.8,99.77
+>=2.0,11,8524,1,104,10,8420,9.1,98.78,1.0,99.88

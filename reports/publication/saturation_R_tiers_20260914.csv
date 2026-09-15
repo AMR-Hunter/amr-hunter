@@ -1,0 +1,14 @@
+﻿item,value,definition
+universe,1643,"final DB, RESISTANT + CDS, 10 target genes, distinct (gene,pos,ref,alt)"
+tier1a_exact_grade12_match,36,aa change equals a WHO grade 1-2 entry (p. notation normalised); matches 30 catalogue rows
+tier1b_nonsense_generic_LoF,119,stop-gained variant in Rv0678/pepQ covered by the catalogue's generic LoF entries
+tier1_catalogue_anchored,155,tier1a + tier1b
+tier2_grade3_listed,134,matches only a WHO grade-3 entry
+tier3_catalogue_absent,1354,no catalogue row match and not class-covered
+who_R_rows_missense,14,"catalogue accounting, 88 R rows total"
+who_R_rows_generic_LoF,2,"catalogue accounting, 88 R rows total"
+who_R_rows_frameshift,55,"catalogue accounting, 88 R rows total"
+who_R_rows_stop_gained,16,"catalogue accounting, 88 R rows total"
+who_R_rows_initiation_codon,1,"catalogue accounting, 88 R rows total"
+who_R_rows_total,88,
+lof_inferred_concordance_entries,58,frameshift + generic LoF + initiation codon rows (the 58 LoF-inferred entries)

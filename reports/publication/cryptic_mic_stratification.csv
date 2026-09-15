@@ -1,0 +1,7 @@
+phenotype,mic_bin,total_isolates,pred_R,pred_S,pred_UNKNOWN,correct,accuracy,primary_metric,primary_metric_value
+R,0.5,48,18,30,0,18,0.3750,sensitivity,0.3750
+R,1.0,12,3,9,0,3,0.2500,sensitivity,0.2500
+R,2.0,2,1,1,0,1,0.5000,sensitivity,0.5000
+R,>1_to_2,4,0,4,0,0,0.0000,sensitivity,0.0000
+R,>2,5,1,4,0,1,0.2000,sensitivity,0.2000
+S,<=0.25,8464,157,8278,29,8278,0.9780,specificity,0.9780

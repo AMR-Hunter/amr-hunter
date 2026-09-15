@@ -1,0 +1,9 @@
+model,target_specificity,heldout_groups,total,tp,tn,fp,fn,recall,specificity,precision,accuracy
+reference_no_secondary,0.99,10,8535,20,8391,73,51,0.2817,0.9914,0.2151,0.9855
+reference_no_secondary,0.98,10,8535,22,8327,137,49,0.3099,0.9838,0.1384,0.9782
+reference_no_secondary,0.95,10,8535,30,8047,417,41,0.4225,0.9507,0.0671,0.9463
+reference_no_secondary,0.90,10,8535,33,7834,630,38,0.4648,0.9256,0.0498,0.9217
+nested_candidate_variants,0.99,10,8535,20,8391,73,51,0.2817,0.9914,0.2151,0.9855
+nested_candidate_variants,0.98,10,8535,22,8324,140,49,0.3099,0.9835,0.1358,0.9779
+nested_candidate_variants,0.95,10,8535,29,8051,413,42,0.4085,0.9512,0.0656,0.9467
+nested_candidate_variants,0.90,10,8535,30,7910,554,41,0.4225,0.9345,0.0514,0.9303

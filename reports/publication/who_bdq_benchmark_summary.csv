@@ -1,0 +1,13 @@
+scope_type,scope_value,who_rows,evaluable_primary_rows,current_evaluator_scope_rows,matched_rows,correct_rows,wrong_rows,unmatched_rows,coverage,current_scope_coverage,matched_call_accuracy,tp,tn,fp,fn
+gene,Rv0678,249,93,92,42,42,0,51,0.4516,0.4565,1.0000,23,19,0,0
+gene,Rv1979c,266,57,56,56,56,0,1,0.9825,1.0000,1.0000,0,56,0,0
+gene,atpE,21,10,10,10,10,0,0,1.0000,1.0000,1.0000,6,4,0,0
+gene,lpqB,151,0,0,0,0,0,0,,,,0,0,0,0
+gene,mmpL5,352,112,112,112,112,0,0,1.0000,1.0000,1.0000,0,112,0,0
+gene,mmpS5,88,25,25,25,25,0,0,1.0000,1.0000,1.0000,0,25,0,0
+gene,mtrA,82,25,25,25,25,0,0,1.0000,1.0000,1.0000,0,25,0,0
+gene,mtrB,142,73,73,73,73,0,0,1.0000,1.0000,1.0000,0,73,0,0
+gene,pepQ,114,46,45,39,39,0,7,0.8478,0.8667,1.0000,1,38,0,0
+overall_primary,all,1465,441,438,382,382,0,59,0.8662,0.8721,1.0000,30,352,0,0
+role,primary,1314,441,438,382,382,0,59,0.8662,0.8721,1.0000,30,352,0,0
+role,primary_accounting_only,151,0,0,0,0,0,0,,,,0,0,0,0

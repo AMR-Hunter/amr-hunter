@@ -1,0 +1,2 @@
+scope_type,scope_value,who_rows,primary_evaluable_rows,current_evaluator_scope_rows,matched_rows,direct_matched_rows,lof_inferred_rows,correct_rows,wrong_rows,unmatched_rows,coverage,current_scope_coverage,matched_call_accuracy,tp,tn,fp,fn,gap_reasons
+overall_primary,all,1465,441,440,440,382,58,440,0,1,0.9977,1.0000,1.0000,88,352,0,0,regulatory_out_of_config_window:1

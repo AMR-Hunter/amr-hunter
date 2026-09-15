@@ -1,0 +1,29 @@
+AMR-Hunter
+Copyright 2026 Zhang Lulu and Wang Feng
+
+This product includes software developed as part of the AMR-Hunter project.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+file except in compliance with the License. You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+
+Third-party components invoked but not redistributed by this repository:
+
+  - Evo 2 (Arc Institute)                       https://github.com/ArcInstitute/evo2
+  - Boltz-2 (MIT)                               https://github.com/jwohlwend/boltz
+  - BioPython (Biopython License Agreement)     https://biopython.org
+  - RCSB PDB entries 7D00, 4NB5, 2GWR           https://www.rcsb.org
+  - NCBI reference genome NC_000962.3           https://www.ncbi.nlm.nih.gov
+  - PubChem bedaquiline compound record         https://pubchem.ncbi.nlm.nih.gov
+
+Reference data obtained from the WHO catalogue of mutations and the CRyPTIC consortium are
+public resources and appear here only in derived, per-variant or per-isolate form; original
+source files are not redistributed.
+
+If you use this software, please cite the AMR-Hunter paper (see CITATION.cff).

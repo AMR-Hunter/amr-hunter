@@ -1,0 +1,6 @@
+taxonomy,fn_isolates,fraction_of_fn,fraction_of_all_r,mic_bin_counts
+secondary_gene_unsupported,22,0.4583,0.3099,0.5:17;1.0:4;2.0:1
+mtrB_double_hit_context,11,0.2292,0.1549,0.5:6;1.0:2;>1_to_2:1;>2:2
+mtrB_met517_context_only,10,0.2083,0.1408,0.5:3;1.0:2;>1_to_2:3;>2:2
+only_current_sensitive_markers,3,0.0625,0.0423,0.5:3
+core_gene_unsupported,2,0.0417,0.0282,0.5:1;1.0:1

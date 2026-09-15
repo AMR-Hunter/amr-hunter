@@ -1,0 +1,4 @@
+gene,processed_rows,failed_rows,new_artifact_rows,cache_reused_rows,scenario_summary,resistance_label_counts,evidence_code_counts,final_status_counts,ptm_median_export,iptm_median_export,plddt_median,plddt_min,plddt_max,paper_takeaway
+atpE,30,0,14,16,ptm_iptm_plddt:14,UNKNOWN:14,POSITIVE_REVIEWED_NO_ESCAPE_EVIDENCE:14,COMPLETED:14,0.9290,0.9290,0.9587,0.9497,0.9644,"high-confidence structural review, mostly cautious UNKNOWN calls; cache reuse noted"
+Rv0678,30,0,30,0,ptm_iptm_plddt:30,RESISTANT:12;SENSITIVE:18,NEGATIVE_FUNCTION_RETAINED:18;NEGATIVE_LOF_REVIEWED:12,COMPLETED:18;LOSS_OF_FUNCTION:12,0.6592,0.6592,0.8394,0.7803,0.8925,most manuscript-useful split: retained-function sensitive vs LOF-reviewed resistant
+pepQ,30,0,30,0,folding_only_plddt_primary:30,SENSITIVE:30,NEGATIVE_FUNCTION_RETAINED:30,COMPLETED:30,,,0.9632,0.9583,0.9665,folding-only retained-function evidence; report pLDDT and hide pTM/ipTM as not applicable

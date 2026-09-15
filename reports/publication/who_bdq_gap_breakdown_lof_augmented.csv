@@ -1,0 +1,2 @@
+gap_reason,gene,mutation_class,who_truth,who_grade,rows,example_who_row_ids,example_mutations
+regulatory_out_of_config_window,Rv1979c,regulatory,S,G4,1,1219,c.-129A>G

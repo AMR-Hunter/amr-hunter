@@ -1,0 +1,9 @@
+model,target_specificity,folds,repeats,total_predictions,tp,tn,fp,fn,recall,specificity,precision,accuracy
+reference_no_secondary,0.99,5,5,42675,98,41928,392,257,0.2761,0.9907,0.2000,0.9848
+reference_no_secondary,0.98,5,5,42675,113,41619,701,242,0.3183,0.9834,0.1388,0.9779
+reference_no_secondary,0.95,5,5,42675,145,40339,1981,210,0.4085,0.9532,0.0682,0.9487
+reference_no_secondary,0.90,5,5,42675,167,39657,2663,188,0.4704,0.9371,0.0590,0.9332
+nested_candidate_variants,0.99,5,5,42675,98,41928,392,257,0.2761,0.9907,0.2000,0.9848
+nested_candidate_variants,0.98,5,5,42675,123,41586,734,232,0.3465,0.9827,0.1435,0.9774
+nested_candidate_variants,0.95,5,5,42675,162,40322,1998,193,0.4563,0.9528,0.0750,0.9487
+nested_candidate_variants,0.90,5,5,42675,205,38924,3396,150,0.5775,0.9198,0.0569,0.9169

@@ -1,0 +1,6 @@
+mic_bin,fn_isolates,with_core_unsupported,with_secondary_unsupported,with_context_unsupported,with_mtrB_Met517Leu,with_mtrB_Pro18Ser,fraction_of_fn
+0.5,30,1,18,27,27,7,0.6250
+1.0,9,1,5,9,9,2,0.1875
+2.0,1,0,1,1,1,0,0.0208
+>1_to_2,4,0,0,4,4,1,0.0833
+>2,4,0,0,4,4,2,0.0833

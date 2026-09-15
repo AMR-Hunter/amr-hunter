@@ -1,0 +1,8 @@
+gap_reason,gene,mutation_class,who_truth,who_grade,rows,example_who_row_ids,example_mutations
+generic_lof_category,Rv0678,generic_lof,R,G1,1,970,LoF
+generic_lof_category,pepQ,generic_lof,R,G2,1,878,LoF
+regulatory_out_of_config_window,Rv1979c,regulatory,S,G4,1,1219,c.-129A>G
+unsupported_non_snp_variant,Rv0678,frameshift,R,G1,3,1037|1073|1097,p.Asp47fs|p.Glu49fs|p.Ile67fs
+unsupported_non_snp_variant,Rv0678,frameshift,R,G2,46,974|978|981|989|993,p.Ala110fs|p.Ala144fs|p.Ala62fs|p.Arg109fs|p.Arg123fs
+unsupported_non_snp_variant,Rv0678,start_lost,R,G2,1,1132,p.Met1?
+unsupported_non_snp_variant,pepQ,frameshift,R,G2,6,899|902|917|925|940,p.Asp232fs|p.Asp51fs|p.His100fs|p.Leu317fs|p.Thr341fs

@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use AMR-Hunter, please cite both the software and the accompanying paper."
+title: "AMR-Hunter"
+abstract: "A mechanism-driven, zero-shot framework for interpreting and prioritizing bedaquiline resistance-associated variants in the Mycobacterium tuberculosis complex."
+type: software
+version: "1.0.0"
+date-released: "2026-09-15"
+license: "Apache-2.0"
+repository-code: "https://github.com/AMR-Hunter/amr-hunter"
+# Affiliations, ORCID iDs and the article DOI can be added at submission time.
+authors:
+  - family-names: "Zhang"
+    given-names: "Lulu"
+  - family-names: "Wang"
+    given-names: "Feng"
+preferred-citation:
+  type: article
+  title: "AMR-Hunter: A Mechanism-Driven Framework for Prioritizing Bedaquiline Resistance-Associated Variants in the Mycobacterium tuberculosis Complex"
+  # Journal, volume, pages and DOI can be added once available.
+  authors:
+    - family-names: "Zhang"
+      given-names: "Lulu"
+    - family-names: "Wang"
+      given-names: "Feng"
+keywords:
+  - bedaquiline
+  - Mycobacterium tuberculosis
+  - drug resistance
+  - variant interpretation
+  - Evo 2
+  - Boltz-2

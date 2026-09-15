@@ -1,0 +1,458 @@
+paths:
+  local_data_root: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data
+  local_db_path: /root/gpufree-data/db/amr_hunter.db
+  share_root: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data
+  share_db_path: /root/gpufree-data/db/amr_hunter.db
+
+reference_genomes:
+  - species: Mycobacterium tuberculosis
+    path: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/reference/mtb_h37rv.gbk
+
+# 启动时自动检查并下载缺失输入文件（以贝达喹啉示例为主）
+data_autofetch:
+  enabled: true
+  timeout_seconds: 90
+
+  # 支持按物种、基因、文件名映射下载地址
+  reference_genomes:
+    Mycobacterium tuberculosis: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000962.3&rettype=gbwithparts&retmode=text
+
+  ligand_sdf:
+    bedaquiline.sdf: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Bedaquiline/SDF
+
+  structure_pdb:
+    atpE: https://files.rcsb.org/download/7D00.pdb
+    Rv0678: https://files.rcsb.org/download/4NB5.pdb
+    mtrA: https://files.rcsb.org/download/2GWR.pdb
+    mtrB: https://files.rcsb.org/download/2GWR.pdb
+    mmpS5: https://files.rcsb.org/download/4NB5.pdb
+    mmpL5: https://files.rcsb.org/download/4NB5.pdb
+    Rv1979c: https://files.rcsb.org/download/4NB5.pdb
+    pepQ: https://files.rcsb.org/download/4NB5.pdb
+    glpK: https://files.rcsb.org/download/4NB5.pdb
+    lpqB: https://files.rcsb.org/download/4NB5.pdb
+
+# 目标基因配置 - AMR-Hunter 核心基因处理字典（按全景表）
+target_genes:
+  - species: Mycobacterium tuberculosis
+    gene: atpE
+    logic_type: POSITIVE
+    scenario: PROTEIN_LIGAND
+    force_boltz: true
+    pathway_group: null
+    apply_default_windows: true
+    noncoding_windows:
+      - name: ATPE_PROMOTER_CORE
+        mode: around_start
+        upstream_bp: 70
+        downstream_bp: 20
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/atpE_wt.pdb
+    ligand_sdf: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/ligands/bedaquiline.sdf
+
+  - species: Mycobacterium tuberculosis
+    gene: Rv0678
+    logic_type: NEGATIVE
+    scenario: PROTEIN_DNA
+    pathway_group: efflux_pump
+    include_upstream: true
+    upstream_bp: 120
+    apply_default_windows: true
+    noncoding_windows:
+      - name: RV0678_OPERATOR_CORE
+        mode: around_start
+        upstream_bp: 90
+        downstream_bp: 30
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/rv0678_dimer.pdb
+    dna_sequence: ATGCGGATCCGCTAGAATTCGCTAGC
+
+  - species: Mycobacterium tuberculosis
+    gene: mtrA
+    # LoF → 敏化：MtrA-MtrB 为必需双组分系统，CRISPRi 敲低 → BDQ 超敏。
+    # 由 NEGATIVE（LoF → 耐药）迁移为 STRUCTURAL（LoF → 敏感）。
+    logic_type: STRUCTURAL
+    scenario: FOLDING_ONLY
+    pathway_group: mtrAB_system
+    apply_default_windows: true
+    noncoding_windows:
+      - name: MTRA_OPERATOR_CORE
+        mode: around_start
+        upstream_bp: 90
+        downstream_bp: 30
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/mtrA_wt.pdb
+
+  - species: Mycobacterium tuberculosis
+    gene: mtrB
+    # LoF → 敏化：与 mtrA 相同的迁移（NEGATIVE → STRUCTURAL）。
+    logic_type: STRUCTURAL
+    scenario: FOLDING_ONLY
+    pathway_group: mtrAB_system
+    apply_default_windows: true
+    noncoding_windows:
+      - name: MTRB_OPERATOR_CORE
+        mode: around_start
+        upstream_bp: 90
+        downstream_bp: 30
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/mtrB_wt.pdb
+
+  - species: Mycobacterium tuberculosis
+    gene: mmpS5
+    logic_type: STRUCTURAL
+    scenario: COMPLEX
+    complex_partners: ["mmpL5"]
+    pathway_group: efflux_pump
+    include_upstream: true
+    upstream_bp: 120
+    apply_default_windows: true
+    noncoding_windows:
+      - name: MMPS5_OPERATOR_PROXIMAL
+        mode: around_start
+        upstream_bp: 80
+        downstream_bp: 20
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/mmpS5_wt.pdb
+
+  - species: Mycobacterium tuberculosis
+    gene: mmpL5
+    logic_type: STRUCTURAL
+    scenario: COMPLEX
+    complex_partners: ["mmpS5"]
+    pathway_group: efflux_pump
+    include_upstream: true
+    upstream_bp: 120
+    apply_default_windows: true
+    noncoding_windows:
+      - name: MMPL5_OPERATOR_PROXIMAL
+        mode: around_start
+        upstream_bp: 80
+        downstream_bp: 20
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/mmpL5_wt.pdb
+
+  - species: Mycobacterium tuberculosis
+    gene: Rv1979c
+    logic_type: NEGATIVE
+    # 探索性基因：Evo/Boltz 证据照常入库，但不产出正式 R/S 判定
+    # （判定引擎输出 UNKNOWN + EXPLORATORY_ONLY，对应 BDQ_LOF_NEUTRAL_GENES）。
+    gene_role: exploratory
+    scenario: FOLDING_ONLY
+    pathway_group: null
+    apply_default_windows: true
+    noncoding_windows:
+      - name: RV1979C_PROMOTER_CORE
+        mode: around_start
+        upstream_bp: 150
+        downstream_bp: 20
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/rv1979c_wt.pdb
+
+  - species: Mycobacterium tuberculosis
+    gene: pepQ
+    logic_type: NEGATIVE
+    scenario: FOLDING_ONLY
+    pathway_group: efflux_pump
+    apply_default_windows: true
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/pepQ_wt.pdb
+
+  - species: Mycobacterium tuberculosis
+    gene: glpK
+    logic_type: NEGATIVE
+    # 探索性基因：与 Rv1979c 相同，不产出正式 R/S 判定。
+    gene_role: exploratory
+    scenario: FOLDING_ONLY
+    pathway_group: null
+    apply_default_windows: true
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/glpK_wt.pdb
+
+  - species: Mycobacterium tuberculosis
+    gene: lpqB
+    logic_type: STRUCTURAL
+    scenario: FOLDING_ONLY
+    pathway_group: mtrAB_system
+    apply_default_windows: true
+    structure_pdb: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/structures/lpqB_wt.pdb
+
+# 非编码区窗口配置（可选）
+# mode 支持：upstream / downstream / around_start / intergenic
+noncoding:
+  apply_default_windows: false
+  default_windows:
+    - name: DEFAULT_UPSTREAM_120
+      mode: upstream
+      length_bp: 120
+    - name: DEFAULT_AROUND_START
+      mode: around_start
+      upstream_bp: 80
+      downstream_bp: 20
+
+  # 跨基因区间窗口（挂靠到 anchor_gene 结果中）
+  intergenic_regions:
+    - name: RV0678_MMPS5_INTERGENIC
+      species: Mycobacterium tuberculosis
+      anchor_gene: Rv0678
+      partner_gene: mmpS5
+      trim_left_bp: 0
+      trim_right_bp: 0
+
+    - name: RV0678_MMPL5_INTERGENIC
+      species: Mycobacterium tuberculosis
+      anchor_gene: Rv0678
+      partner_gene: mmpL5
+      trim_left_bp: 0
+      trim_right_bp: 0
+
+    - name: MTRA_MTRB_INTERGENIC
+      species: Mycobacterium tuberculosis
+      anchor_gene: mtrA
+      partner_gene: mtrB
+      trim_left_bp: 0
+      trim_right_bp: 0
+
+    - name: ATPE_ATPB_INTERGENIC
+      species: Mycobacterium tuberculosis
+      anchor_gene: atpE
+      partner_gene: atpB
+      trim_left_bp: 0
+      trim_right_bp: 0
+
+models:
+  evo2:
+    base_url: http://localhost:8000
+    model_name: evo2_7b     # 默认 7b（单卡 L40S 推荐）；切换到 20b 见下方说明
+    # ── 切换模型的方式（三选一）─────────────────────────────────────────────
+    # 方式 1：修改本行：model_name: evo2_20b
+    # 方式 2：命令行参数：python run_pipeline.py --evo2-size 20b
+    # 方式 3：环境变量：EVO2_SIZE=20b python run_pipeline.py
+    # 注意：20b 需要 Hopper GPU（H100/H200）才能发挥完整 FP8 性能；
+    #       L40S 可运行但会降级到 BF16，且单卡装不下（38GB > 48GB 去除 OS 开销后的可用空间边缘）
+    #       建议换卡后再切换到 20b
+    timeout_seconds: 120
+    health_check_endpoint: /health
+    max_retries: 3
+  boltz2:
+    base_url: http://localhost:8001
+    timeout_seconds: 1800  # Boltz 单次推理常超过 5 分钟，避免客户端超时后重复提交同一任务
+    health_check_endpoint: /health
+    max_retries: 1
+
+# Pipeline 分阶段执行配置
+pipeline:
+  checkpoint_sync_interval_seconds: 300  # 长任务运行中每 5 分钟把本地 SQLite 快照同步到共享盘
+  shutdown_on_complete: false  # 成功完成当前 run_pipeline 任务后是否自动关机
+  shutdown_command: shutdown -h now  # 可按环境改成 systemctl poweroff 等命令
+  # Evo 阶段配置
+  evo:
+    batch_size: 256
+    workers: 8
+    lethal_threshold: -10.0  # POSITIVE 逻辑致死阈值
+    collapse_threshold: -8.0  # NEGATIVE 逻辑功能崩溃阈值
+  
+  # Boltz 阶段配置
+  boltz:
+    batch_size: 32  # 结构模拟批次小，避免显存溢出
+    workers: 1  # 动态并发关闭时回退到该值
+    service:
+      persistent_runtime: true
+      prewarm_runners: 2
+      num_workers: 0
+      use_msa_server: true
+      msa_server_url: https://api.colabfold.com
+      msa_pairing_strategy: greedy
+      preprocessing_threads: 1
+      max_msa_seqs: 8192
+      num_subsampled_msa: 1024
+      subsample_msa: true
+      sequence_msa_cache: true
+      stable_msa_cache_dir: ""
+      local_msa_enabled: false
+      local_msa_require_local: false
+      local_msa_bin: colabfold_search
+      local_msa_db_dir: ""
+      local_msa_mmseqs_bin: ""
+      local_msa_extra_args: ""
+      local_msa_work_dir: ""
+      max_concurrent_remote_msa: 1
+      prepare_process_attempts: 3
+      prepare_process_retry_delay_seconds: 3
+      msa_prefetch:
+        enabled: true
+        window: 6
+        max_workers: 1
+        dispatch_ready_window: 4
+      max_concurrent_prepares: 3
+    dynamic_concurrency:
+      enabled: true
+      adaptive_enabled: true
+      max_workers: 6  # 代表在途请求缓冲深度；真实 GPU predict 并发由 service_max_concurrent_predicts 限制
+      scale_up_target_workers: 6
+      service_max_concurrent_predicts: 1
+      initial_dispatch_limit: 3
+      adaptive_telemetry_window: 8
+      adaptive_poll_interval_seconds: 5
+      scale_up_utilization_below: 45
+      scale_up_after_gpu_activity_above: 25
+      scale_down_utilization_above: 88
+      scale_up_memory_utilization_below: 0.55
+      scale_down_memory_utilization_above: 0.86
+      scale_up_low_util_streak: 2
+      scale_cooldown_seconds: 15
+      min_parallel_hold_seconds: 30
+      tail_refill_grace_seconds: 35
+      duration_pairing_enabled: true
+      adaptive_parallel_max_job_vram_gb: 22
+      adaptive_parallel_max_total_length: 1100
+      adaptive_parallel_scenarios:
+        - FOLDING_ONLY
+        - PROTEIN_ONLY
+        - PROTEIN_LIGAND
+        - PROTEIN_DNA
+        - COMPLEX
+      adaptive_parallel_scenario_limits:
+        FOLDING_ONLY:
+          max_job_vram_gb: 14
+          max_total_length: 1400
+        PROTEIN_ONLY:
+          max_job_vram_gb: 16
+          max_total_length: 1100
+        PROTEIN_LIGAND:
+          max_job_vram_gb: 18
+          max_total_length: 900
+        PROTEIN_DNA:
+          max_job_vram_gb: 20
+          max_total_length: 1100
+        COMPLEX:
+          max_job_vram_gb: 22
+          max_total_length: 1400
+      memory_budget_gb: 40
+      reserve_gb: 6
+      scenario_vram_gb:
+        FOLDING_ONLY: 10
+        PROTEIN_ONLY: 12
+        PROTEIN_LIGAND: 14
+        PROTEIN_DNA: 16
+        DIMER_DNA: 20
+        PROTEIN_PROTEIN: 18
+        COMPLEX: 18
+        DIMER: 16
+    selection:
+      include_regulatory: false  # 默认先不跑 regulatory protein-DNA，优先压缩到几天级任务量
+      by_logic_type:
+        POSITIVE:
+          min_evo_delta: -3.5
+          max_evo_delta: -3.0
+        NEGATIVE:
+          min_evo_delta: -3.5
+          max_evo_delta: -3.0
+        STRUCTURAL:
+          min_evo_delta: -3.5
+          max_evo_delta: -3.0
+  
+  # 通用配置
+  max_retries: 3
+  export_csv_path: /root/gpufree-share/amr_hunter_workspace/amr_hunter_data/results/amr_results.csv
+  analysis_snapshot_csv_path: /root/gpufree-share/amr_hunter_workspace/code/reports/amr_results_snapshot.csv
+  log_path: /root/gpufree-share/amr_hunter_workspace/code/logs/pipeline.log
+  metrics_path: /root/gpufree-share/amr_hunter_workspace/code/logs/batch_metrics.jsonl
+
+# 多基因通路联动规则
+pathway_rules:
+  - pathway_group: efflux_pump
+    regulator: Rv0678
+    effectors:
+      - mmpS5
+      - mmpL5
+    epistasis_logic: RV0678_EFFECTOR_COLLAPSE_FLIP
+    correction_state: SENSITIVE
+
+# 多基因协同规则配置
+synergy_rules:
+  - name: efflux_pump_collapse
+    rule_type: CO_LOF
+    genes:
+      - mmpS5
+      - mmpL5
+    description: "mmpS5和mmpL5同时发生功能丧失(LOF)突变，导致外排泵彻底崩溃，产生强烈的协同敏感效应"
+    synergy_score_modifier: -5.0
+    tags: ["PUMP_COLLAPSE", "HYPERSENSITIVE"]
+
+  # [已禁用] mtrAB_deregulation — mtrA/mtrB 机制薄弱已关闭，对应规则同步禁用
+  # - name: mtrAB_deregulation
+  #   rule_type: REGULATOR_EFFECTOR_DEREPRESSION
+  #   regulator: mtrA
+  #   effector: mtrB
+  #   description: "mtrA(调控子)失活且mtrB(效应子)正常，导致mtrB过度表达，产生协同耐药效应"
+  #   synergy_score_modifier: 3.5
+  #   tags: ["MTRAB_DEREGULATION", "SYNERGIC_RESISTANCE"]
+
+  # [已禁用] atp_synthase_compensation — CO_COMPLETED 条件过于宽松（仅要求分析完成即可触发），
+  # 且 atpE 复合体（9×atpE）算力无法承担，暂不启用。待有复合体验证能力后再打开。
+
+tasks:
+  - name: Bedaquiline_atpE_binding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: atpE
+    logic_type: POSITIVE
+    scenario: PROTEIN_LIGAND
+    enabled: true
+
+  - name: Rv0678_promoter_binding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: Rv0678
+    logic_type: NEGATIVE
+    scenario: PROTEIN_DNA
+    enabled: true
+
+  - name: mtrA_folding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: mtrA
+    logic_type: NEGATIVE
+    scenario: FOLDING_ONLY
+    enabled: false  # 机制薄弱：双组分系统，与BDQ耐药间缺乏直接因果链，且无显式复合体界面规则
+
+  - name: mtrB_folding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: mtrB
+    logic_type: NEGATIVE
+    scenario: FOLDING_ONLY
+    enabled: false  # 机制薄弱：同上，mtrAB代偿规则的生物学依据不足
+
+  - name: mmpS5_channel_folding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: mmpS5
+    logic_type: STRUCTURAL
+    scenario: COMPLEX
+    enabled: true
+
+  - name: mmpL5_channel_folding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: mmpL5
+    logic_type: STRUCTURAL
+    scenario: COMPLEX
+    enabled: true
+
+  - name: Rv1979c_folding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: Rv1979c
+    logic_type: NEGATIVE
+    scenario: FOLDING_ONLY
+    enabled: false  # 机制薄弱：产物为"推测性"氨基酸透性酶，与BDQ无直接因果链
+
+  - name: pepQ_folding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: pepQ
+    logic_type: NEGATIVE
+    scenario: FOLDING_ONLY
+    enabled: true  # 外排泵相关（推测脯氨酸肽酶），BDQ 耐药间接途径
+
+  - name: glpK_folding
+    species: Mycobacterium tuberculosis
+    drug: Bedaquiline
+    gene: glpK
+    logic_type: NEGATIVE
+    scenario: FOLDING_ONLY
+    enabled: false  # 机制薄弱：膜脂代谢间接影响药物渗透，因果链过长
+

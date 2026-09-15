@@ -1,0 +1,95 @@
+version: "3.9"
+
+services:
+  evo2:
+    image: ${EVO2_IMAGE:-amr_hunter/evo2:latest}
+    container_name: amr_hunter_evo2
+    profiles: ["evo2"]
+    ports:
+      - "8000:8000"
+    environment:
+      NVIDIA_VISIBLE_DEVICES: "${NVIDIA_VISIBLE_DEVICES:-0}"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      # 供应用程序读取的软限制变量（镜像内应用需自行实现）
+      GPU_MEMORY_LIMIT_GB: "${EVO2_GPU_MEMORY_LIMIT_GB:-22}"
+      # 支持通过环境变量切换 Evo2 规格（示例：evo2_7b / evo2_40b）
+      MODEL_NAME: "${EVO2_MODEL_NAME:-evo2_7b}"
+      EVO2_MODEL_SIZE: "${EVO2_MODEL_SIZE:-7b}"
+      # 40B 多卡场景可设置 tensor parallel（镜像需支持该变量）
+      TENSOR_PARALLEL_SIZE: "${EVO2_TENSOR_PARALLEL_SIZE:-1}"
+      MODEL_PORT: "8000"
+    volumes:
+      - ./data:/root/amr_hunter/data
+      - ./logs:/root/amr_hunter/logs
+      - /root/gpufree-share/amr_hunter:/root/gpufree-share/amr_hunter
+    gpus: all
+    restart: unless-stopped
+
+  boltz2:
+    image: amr_hunter/boltz2:latest
+    container_name: amr_hunter_boltz2
+    profiles: ["boltz2"]
+    ports:
+      - "8001:8001"
+    environment:
+      NVIDIA_VISIBLE_DEVICES: "${NVIDIA_VISIBLE_DEVICES:-0}"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      # 供应用程序读取的软限制变量（镜像内应用需自行实现）
+      GPU_MEMORY_LIMIT_GB: "${BOLTZ2_GPU_MEMORY_LIMIT_GB:-22}"
+      MODEL_NAME: "boltz2"
+      MODEL_PORT: "8001"
+    volumes:
+      - ./data:/root/amr_hunter/data
+      - ./logs:/root/amr_hunter/logs
+      - /root/gpufree-share/amr_hunter:/root/gpufree-share/amr_hunter
+    gpus: all
+    restart: unless-stopped
+
+  amr-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: amr_hunter/amr-app:latest
+    container_name: amr_hunter_amr_app
+    depends_on:
+      - evo2
+      - boltz2
+    profiles: ["amr-app"]
+    environment:
+      NVIDIA_VISIBLE_DEVICES: "${NVIDIA_VISIBLE_DEVICES:-0}"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      # 容器内路径（app 将数据写入 /app/data，宿主通过卷拿到）
+      AMR_LOCAL_DATA: "/app/data"
+      # 共享存储路径（可选，自动探测）
+      # 优先级：显式 env 变量 > 自动探测路径 > 默认值
+      AMR_SHARE_PATH: "${AMR_SHARE_PATH:-}"
+      # 日志级别
+      LOG_LEVEL: "${LOG_LEVEL:-INFO}"
+    volumes:
+      # 本地数据卷（包含 db, results, reference, structures, ligands）
+      - ./data:/app/data
+      # 共享存储（跨容器/主机同步用）
+      - ${AMR_SHARE_PATH:-./.shared_data}:/app/share_data
+      # 日志卷
+      - ./logs:/app/logs
+    # GPU 透传：让容器能看见两块 GPU（数字表示设备 ID）
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 2
+              capabilities: [gpu]
+    # 容器不自动重启（便于调试）
+    restart: "no"
+    # 命令行参数：默认 --stage all（用户可通过 docker compose run --rm amr-app --stage evo 覆盖）
+    command: ["--stage", "all"]
+
+# 建议：L40S 48GB 下分开启动，避免双模型抢占显存
+#   docker compose --profile evo2 up -d
+#   docker compose --profile boltz2 up -d
+#   docker compose --profile amr-app up -d
+# 
+# 或直接运行（一次性）：
+#   export AMR_SHARE_PATH=/tmp/amr_share
+#   docker compose run --rm amr-app --stage all

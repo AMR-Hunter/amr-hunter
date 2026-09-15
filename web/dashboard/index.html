@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMR-Hunter 控制台</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">AMR-Hunter Ops Console</p>
+          <h1>项目管理控制台</h1>
+          <p class="hero-copy">
+            在一个页面里管理流水线运行、查看 GPU 和日志、分析结果、浏览数据库，以及执行只读 SQL。
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="refresh-overview" class="primary">刷新总览</button>
+          <span id="server-time" class="pill muted">--</span>
+        </div>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="panel accent-panel">
+          <div class="panel-header">
+            <div>
+              <h2>流水线控制</h2>
+              <p>启动、停止当前任务，并决定是否在完成后自动关机。</p>
+            </div>
+            <div id="pipeline-badge" class="status-badge idle">未运行</div>
+          </div>
+
+          <div class="pipeline-summary" id="pipeline-summary"></div>
+
+          <form id="start-form" class="control-form">
+            <label>
+              阶段
+              <select name="stage">
+                <option value="boltz">boltz</option>
+                <option value="evo">evo</option>
+                <option value="analyze">analyze</option>
+                <option value="all">all</option>
+              </select>
+            </label>
+            <label>
+              限额
+              <input type="number" name="limit" min="1" placeholder="留空 = 跑空当前队列" />
+            </label>
+            <label>
+              Evo2 规格
+              <select name="evo2_size">
+                <option value="7b">7b</option>
+                <option value="20b">20b</option>
+                <option value="40b">40b</option>
+              </select>
+            </label>
+            <label>
+              量化
+              <select name="evo2_quantization">
+                <option value="auto">auto</option>
+                <option value="none">none</option>
+                <option value="int8">int8</option>
+                <option value="int4">int4</option>
+              </select>
+            </label>
+            <label>
+              日志文件名
+              <input type="text" name="log_name" placeholder="dashboard_boltz_full.log" />
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="shutdown_on_complete" />
+              <span>完成后自动关机</span>
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="primary">开始运行</button>
+              <button type="button" id="stop-pipeline" class="danger">停止当前任务</button>
+            </div>
+          </form>
+          <div id="control-message" class="inline-message"></div>
+        </section>
+
+        <section class="panel metrics-panel">
+          <div class="panel-header">
+            <div>
+              <h2>系统状态</h2>
+              <p>GPU、磁盘和关键资源路径。</p>
+            </div>
+          </div>
+          <div id="gpu-cards" class="card-grid"></div>
+          <div id="disk-cards" class="card-grid compact-grid"></div>
+        </section>
+
+        <section class="panel wide-panel">
+          <div class="panel-header">
+            <div>
+              <h2>结果分析</h2>
+              <p>状态分布、Boltz 覆盖率、导出结果和最近批次事件。</p>
+            </div>
+          </div>
+          <div id="result-kpis" class="kpi-grid"></div>
+          <div class="split-grid">
+            <div>
+              <h3>状态分布</h3>
+              <div id="status-counts" class="list-table"></div>
+            </div>
+            <div>
+              <h3>Top 已完成基因</h3>
+              <div id="top-ready-genes" class="list-table"></div>
+            </div>
+          </div>
+          <div class="split-grid">
+            <div>
+              <h3>导出文件</h3>
+              <pre id="result-file-meta" class="code-block"></pre>
+            </div>
+            <div>
+              <h3>最近批次事件</h3>
+              <pre id="metrics-events" class="code-block tall-block"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel wide-panel">
+          <div class="panel-header">
+            <div>
+              <h2>日志查看</h2>
+              <p>支持切换日志文件并实时读取尾部内容。</p>
+            </div>
+            <div class="toolbar">
+              <select id="log-select"></select>
+              <input id="log-lines" type="number" min="10" max="2000" value="200" />
+              <button id="load-log">读取日志</button>
+            </div>
+          </div>
+          <pre id="log-viewer" class="log-viewer"></pre>
+        </section>
+
+        <section class="panel wide-panel">
+          <div class="panel-header">
+            <div>
+              <h2>数据库浏览</h2>
+              <p>按状态和基因过滤突变记录，也可以执行只读 SQL。</p>
+            </div>
+          </div>
+          <div class="toolbar toolbar-wrap">
+            <input id="mutation-gene" type="text" placeholder="按基因名过滤，如 atpE" />
+            <input id="mutation-status" type="text" placeholder="按状态过滤，如 BOLTZ_READY" />
+            <input id="mutation-limit" type="number" min="1" max="500" value="100" />
+            <button id="load-mutations">加载突变</button>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Gene</th>
+                  <th>Mutation</th>
+                  <th>Status</th>
+                  <th>Evo</th>
+                  <th>pTM</th>
+                  <th>pLDDT</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody id="mutation-table"></tbody>
+            </table>
+          </div>
+
+          <div class="sql-panel">
+            <div class="panel-header tight-header">
+              <div>
+                <h3>只读 SQL</h3>
+                <p>仅允许 SELECT / WITH / PRAGMA / EXPLAIN。</p>
+              </div>
+              <button id="run-sql">执行查询</button>
+            </div>
+            <textarea id="sql-text" class="sql-text">SELECT status, COUNT(*) AS count FROM mutations GROUP BY status ORDER BY count DESC;</textarea>
+            <pre id="sql-result" class="code-block tall-block"></pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

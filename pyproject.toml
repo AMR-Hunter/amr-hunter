@@ -1,0 +1,14 @@
+[project]
+name = "amr-hunter"
+version = "0.1.0"
+description = "AMR prediction pipeline powered by Evo2 and Boltz-2"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "biopython>=1.84",
+  "PyYAML>=6.0",
+  "requests>=2.31",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+.venv-*/
+venv/
+ENV/
+env/
+
+# uv / pip
+uv.lock
+.env
+
+# Databases and caches
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+
+# Logs and runtime state
+logs/
+*.log
+.dashboard_runtime/
+server_artifacts/
+boltz_artifacts/
+cache/
+
+# Bulk inputs and outputs (fetch with scripts/init_project.py)
+data/db/
+data/reference/*.gbk
+data/structures/
+data/ligands/
+data/results/
+data/external/
+
+# Large tables distributed as GitHub release attachments
+reports/publication/cryptic_supervised_cv_predictions.csv
+reports/publication/cryptic_candidate_nested_cv_predictions.csv
+reports/publication/external_bdq_phenotype_validation_variant_calls.csv
+reports/publication/final_external_bdq_phenotype_validation_variant_calls.csv
+reports/publication/rule_layer_no_gate_variant_calls.csv
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Archives
+*.zip
+*.tar.gz
+*.whl
